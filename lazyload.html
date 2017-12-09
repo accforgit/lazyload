@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div class="box"></div>
+  <button id="btn">重新init</button>
+  <button id="btn2">追加更多</button>
+  <div class="box1"></div>
+  </body>
+  <script>
+    window.onload = function () {
+      appendItem()
+      let script = document.createElement('script')
+      script.src='./lazyload.js'
+      document.body.appendChild(script)
+    }
+    function appendItem (className = '.box', p=1) {
+      let box = document.querySelector(className)
+      let str = ''
+      for(let i=0; i<5; i++) {
+        str += `<div class="item item-${i*p}"></div>`
+      }
+      box.innerHTML=str
+      str = ''
+      for (let i = 0; i < 25; i++) {
+        str += `<div class="img" data-src="https://dummyimage.com/200x200/ff0ff0&text=${i*p}" id="${i*p}"></div>`
+        if (i%5===0) {
+          box.querySelector('.item-'+i*p/5).innerHTML=str
+          str = ''
+        }
+      }
+    }
+    document.getElementById('btn2').onclick= function() {
+      appendItem('.box1', 5)
+    }
+  </script>
+  <style>
+    .item {
+      margin: 50px 0;
+      overflow-x: scroll;
+      overflow-y: hidden;
+      white-space: nowrap;
+    }
+    .img {
+      display: inline-block;
+      width: 200px;
+      height: 200px;
+      margin: 0 10px;
+      border: 1px solid red;
+      border-radius: 4px;
+    }
+  </style>
+</html>
