@@ -28,6 +28,8 @@ for (let i = 0; i < len; i++) {
 
 上述代码就是判断元素有没有出现在浏览器视窗内，以决定是否让元素加载对应的图片。
 
+![showpicture](https://github.com/accforgit/lazyload/blob/master/lazyload.png)
+
 ---
 
 ## 用法
@@ -39,7 +41,7 @@ let lazyload = new LazyLoad()
 lazyload.init()
 ```
 
-为了更方便的传参，`lazyLoad`类接受 `1`个 `Object`类型的参数，此参数最多有 `5`个自有属性，一个必选，四个可选。
+为了更方便的传参，`lazyLoad`类接受 `1`个 `Object`类型的参数，此参数最多有 `6`个自有属性，一个必选，五个可选。
 
 |参数名|类型|描述|默认值|是否必选|
 |---|---|---|---|---|
@@ -48,6 +50,7 @@ lazyload.init()
 |`tag`|`string`|元素标签上用于懒加载的属性名，值为需要懒加载的图片地址|`data-src`|否|
 |`frequency`|`number`|插件通过监听页面的`scroll`、`resize`和`touchmove`事件来不断获取元素的是否进入视野内的信息，此参数用于事件节流，此值越小，则占用的浏览器资源越多|`14`|
 |`isBg`|`boolean`|插件支持直接的 `img`标签懒加载，同时也可支持其他元素的背景图片懒加载，默认是支持 `img`标签的图片懒加载|`false`|
+|`defaultImg`|`string`|在元素懒加载正确的图片之前显示的替代图片，默认没有|-|否|
 
 
 所以，此插件最基本的用法：
@@ -57,19 +60,19 @@ let lazyload = new LazyLoad()
 lazyload.init()
 ```
 
-如果你想懒加载的图片是一个 `div`的背景图，并且将图片地址附在 `data-imgurl`属性上，还规定当元素距离视野边缘 `50px`时就开始进行懒加载，节流频率为 `20ms`, 例如：
+如果你想懒加载的图片是一个 `div`的背景图，并且将图片地址附在 `imgurl`这个自定义属性上，还规定当元素距离视野边缘 `50px`时就开始进行懒加载，节流频率为 `20ms`, 懒加载的替代图片是 `https://dummyimage.com/200x200/ff0ff0&text=66`，例如：
 ```
-<div class="bgBox" data-imgurl="http://exmple.com/1.png"></div>
+<div class="bgBox" imgurl="http://exmple.com/1.png"></div>
 ```
 
 则需要这样初始化：
 
 ```
-let lazyload = new LazyLoad({elements: '.bgBox', distance: 50, tag: 'data-imgurl', frequency: 20, isBg: true})
+let lazyload = new LazyLoad({elements: '.bgBox', distance: 50, tag: 'data-imgurl', frequency: 20, isBg: true, defaultImg: 'https://dummyimage.com/200x200/ff0ff0&text=66'})
 lazyload.init()
 ```
 
 另外，需要注意的是，如果你再初始化并调用 `init`方法之后，页面又追加了需要懒加载的元素，则需要再次调用 `init`方法来应用于新追加进来的元素上。
 
-算上空行和注释也就90行的代码量，整个插件就是一个 `ES6`的 `class`类定义的，所以逻辑看起来是很清晰的，没有什么道道，看一遍就知道是怎么回事，可以很轻松地进行修改。
+算上空行和注释也就100行左右的代码量，整个插件就是一个 `ES6`的 `class`类定义的，所以逻辑看起来是很清晰的，没有什么道道，看一遍就知道是怎么回事，可以很轻松地进行修改。
 
