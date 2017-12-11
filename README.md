@@ -48,8 +48,8 @@ lazyload.init()
 |`elements`|`string/NodeElement`|懒加载的元素，可以是元素的类名`class`或者'id'，也可以是一个元素对象|-|是|
 |`distance`|`number`|当元素距离浏览器可视区域边缘多远时进行图片的加载动作，距离单位是`px`|`0`|否|
 |`tag`|`string`|元素标签上用于懒加载的属性名，值为需要懒加载的图片地址|`data-src`|否|
-|`frequency`|`number`|插件通过监听页面的`scroll`、`resize`和`touchmove`事件来不断获取元素的是否进入视野内的信息，此参数用于事件节流，此值越小，则占用的浏览器资源越多|`14`|
-|`isBg`|`boolean`|插件支持直接的 `img`标签懒加载，同时也可支持其他元素的背景图片懒加载，默认是支持 `img`标签的图片懒加载|`false`|
+|`frequency`|`number`|插件通过监听页面的`scroll`、`resize`和`touchmove`事件来不断获取元素的是否进入视野内的信息，此参数用于事件节流，此值越小，则占用的浏览器资源越多|`14`|否|
+|`isBg`|`boolean`|插件支持直接的 `img`标签懒加载，同时也可支持其他元素的背景图片懒加载，默认是支持 `img`标签的图片懒加载|`false`|否|
 |`defaultImg`|`string`|在元素懒加载正确的图片之前显示的替代图片，默认没有|-|否|
 
 
