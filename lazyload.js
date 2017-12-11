@@ -12,12 +12,13 @@ class LazyLoad {
       return
     }
     this.scrollTimer = null
+    this.defaultImg && this.addDefaultImg()
     this.resizeListenerFn()
     window.addEventListener('scroll', this.scrollListenerFn)
     window.addEventListener('touchmove', this.scrollListenerFn)
     window.addEventListener('resize', this.resizeListenerFn)
   }
-
+  // 初始化一些必要的参数
   initParams () {
     let params = this.params
     let elements = params.elements
@@ -30,6 +31,7 @@ class LazyLoad {
       return
     }
     this.elements = elementsDOMArr
+    this.defaultImg = params.defaultImg
     this.distance = params.distance || 0
     this.tag = params.tag || 'data-src'
     this.frequency = params.frequency || 14
@@ -41,16 +43,16 @@ class LazyLoad {
     if (this.scrollTimer) return
     this.scrollTimer = setTimeout(() => {
       this.scrollTimer = null
-      this.loadImgIfInScreen()
+      this.isComeToLine()
     }, this.frequency)
   }
 
   resizeListenerFn () {
     this.getWH()
-    this.loadImgIfInScreen()
+    this.isComeToLine()
   }
-
-  loadImgIfInScreen () {
+  // 判断是否达到懒加载的条件以决定是否进行懒加载的动作
+  isComeToLine () {
     let len = this.elements.length
     let distance = this.distance
     let hasload = []
@@ -77,10 +79,19 @@ class LazyLoad {
     window.removeEventListener('touchmove', this.scrollListenerFn)
     window.removeEventListener('resize', this.resizeListenerFn)
   }
-
+  // 懒加载图片
   loadItem (ele) {
     let imgUrl = ele.getAttribute(this.tag)
     imgUrl && (this.isBg ? ele.style.backgroundImage = 'url(' + imgUrl + ')' : ele.setAttribute('src', imgUrl))
+  }
+  // 添加默认图片或背景图
+  addDefaultImg () {
+    let elements = this.elements
+    let len = elements.length
+    let isBg = this.isBg
+    for (let i = 0; i < len; i++) {
+      isBg ? elements[i].style.backgroundImage = 'url(' + this.defaultImg + ')' : elements[i].setAttribute('src', this.defaultImg)
+    }
   }
 
   getWH () {
@@ -90,7 +101,7 @@ class LazyLoad {
 }
 
 // 上面的 LazyLoad就是实现懒加载的类，下面是使用此类的简单示例，配合文件中的 lazyload.html可查看效果
-let lazy=new LazyLoad({elements: '.img', distance: 50, tag: 'data-src', frequency: 14, isBg: true})
+let lazy = new LazyLoad({elements: '.img', distance: 50, tag: 'data-src', frequency: 14, isBg: true, defaultImg: 'https://dummyimage.com/200x200/ff0ff0&text=666'})
 lazy.init()
 
 document.getElementById('btn').onclick = () => {

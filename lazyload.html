@@ -29,6 +29,7 @@
       str = ''
       for (let i = 0; i < 25; i++) {
         str += `<div class="img" data-src="https://dummyimage.com/200x200/ff0ff0&text=${i*p}" id="${i*p}"></div>`
+        // str += `<img class="img" data-src="https://dummyimage.com/200x200/ff0ff0&text=${i*p}">`)
         if (i%5===0) {
           box.querySelector('.item-'+i*p/5).innerHTML=str
           str = ''
