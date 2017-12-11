@@ -28,7 +28,7 @@ for (let i = 0; i < len; i++) {
 
 上述代码就是判断元素有没有出现在浏览器视窗内，以决定是否让元素加载对应的图片。
 
-![showpicture](https://github.com/accforgit/lazyload/blob/master/lazyload.png)
+![showpicture](https://github.com/accforgit/lazyload/blob/master/lazyload.gif)
 
 ---
 
