@@ -68,7 +68,7 @@ lazyload.init()
 则需要这样初始化：
 
 ```
-let lazyload = new LazyLoad({elements: '.bgBox', distance: 50, tag: 'data-imgurl', frequency: 20, isBg: true, defaultImg: 'https://dummyimage.com/200x200/ff0ff0&text=66'})
+let lazyload = new LazyLoad({elements: '.bgBox', distance: 50, tag: 'imgurl', frequency: 20, isBg: true, defaultImg: 'https://dummyimage.com/200x200/ff0ff0&text=66'})
 lazyload.init()
 ```
 
