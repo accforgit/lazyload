@@ -59,7 +59,6 @@ lazyload.init({elements: domObjList})
 则需要这样初始化：
 
 ```
-<<<<<<< HEAD
 let lazyload = new LazyLoad()
 lazyload.init({elements: document.querySelectorAll('.bgBox'), distance: 50, tag: 'imgurl', frequency: 20, isBg: true, defaultImg: 'https://dummyimage.com/200x200/ff0ff0&text=66'})
 ```
@@ -69,10 +68,6 @@ lazyload.init({elements: document.querySelectorAll('.bgBox'), distance: 50, tag:
 也就是类似于这种：
 ```
 lazyload.init({elements: newDOMObj})
-=======
-let lazyload = new LazyLoad({elements: '.bgBox', distance: 50, tag: 'imgurl', frequency: 20, isBg: true, defaultImg: 'https://dummyimage.com/200x200/ff0ff0&text=66'})
-lazyload.init()
->>>>>>> 84ab38e9529a4e39a0d3e88d7d6d66419153edbf
 ```
 
 
