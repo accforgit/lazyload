@@ -16,11 +16,12 @@
   <script>
     window.onload = function () {
       appendItem()
-
-      let lazy = new LazyLoad()
-      lazy.init({elements: document.querySelectorAll('.img'), distance: 50, tag: 'data-src', frequency: 14, isBg: true, defaultImg: 'https://dummyimage.com/200x200/ff0ff0&text=666'})
+      let lazy = initLazy()
       document.getElementById('btn').onclick = () => {
         lazy.init({elements: document.querySelectorAll('.box1 .img')})
+      }
+      document.getElementById('btn2').onclick= function() {
+        appendItem('.box1', 5)
       }
     }
     function appendItem (className = '.box', p=1) {
@@ -40,8 +41,10 @@
         }
       }
     }
-    document.getElementById('btn2').onclick= function() {
-      appendItem('.box1', 5)
+    function initLazy () {
+      let lazy = new LazyLoad()
+      lazy.init({elements: document.querySelectorAll('.img'), distance: 50, tag: 'data-src', frequency: 14, isBg: true, defaultImg: 'https://dummyimage.com/200x200/ff0ff0&text=666'})
+      return lazy
     }
   </script>
   <style>
