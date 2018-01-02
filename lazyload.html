@@ -7,19 +7,21 @@
   <title>Document</title>
 </head>
 <body>
-  输入：
-  <textarea rows="" cols=""></textarea>
   <div class="box"></div>
   <button id="btn">重新init</button>
   <button id="btn2">追加更多</button>
   <div class="box1"></div>
   </body>
+  <script src='./lazyload.js'></script>
   <script>
     window.onload = function () {
       appendItem()
-      let script = document.createElement('script')
-      script.src='./lazyload.js'
-      document.body.appendChild(script)
+
+      let lazy = new LazyLoad()
+      lazy.init({elements: document.querySelectorAll('.img'), distance: 50, tag: 'data-src', frequency: 14, isBg: true, defaultImg: 'https://dummyimage.com/200x200/ff0ff0&text=666'})
+      document.getElementById('btn').onclick = () => {
+        lazy.init({elements: document.querySelectorAll('.box1 .img')})
+      }
     }
     function appendItem (className = '.box', p=1) {
       let box = document.querySelector(className)

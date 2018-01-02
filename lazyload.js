@@ -95,11 +95,3 @@ class LazyLoad {
     this.H = document.documentElement.clientHeight || window.innerHeight
   }
 }
-
-// 上面的 LazyLoad就是实现懒加载的类，下面是使用此类的简单示例，配合文件中的 lazyload.html可查看效果
-let lazy = new LazyLoad()
-lazy.init({elements: document.querySelectorAll('.img'), distance: 50, tag: 'data-src', frequency: 14, isBg: true, defaultImg: 'https://dummyimage.com/200x200/ff0ff0&text=666'})
-
-document.getElementById('btn').onclick = () => {
-  lazy.init({elements: document.querySelectorAll('.box1 .img')})
-}
